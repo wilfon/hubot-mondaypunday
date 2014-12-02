@@ -1,0 +1,32 @@
+{
+  "name": "hubot-mondaypunday",
+  "description": "hubot script to grab the monday punday",
+  "version": "1.0",
+  "author": "wilfon",
+  "license": "MIT",
+
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "monday",
+    "punday"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wilfon/hubot-mondaypunday.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/wilfon/hubot-mondaypunday/issues"
+  },
+
+  "dependencies": {
+    "coffee-script": "~1.6",
+    "htmlparser": "1.7.6"
+    "soupselect": "0.2.0"
+  },
+
+  "main": "index.coffee"
+
+}
