@@ -17,6 +17,7 @@
 
 HTMLParser = require "htmlparser"
 Select     = require("soupselect").select
+baseurl    = "http://mondaypunday.com/"
 
 module.exports = (robot) ->
   robot.respond /monday\s?punday( latest)?$/i, (msg) ->
@@ -27,19 +28,19 @@ module.exports = (robot) ->
     getLatest msg, (url) -> 
         count = url.match(/\d+/) - 1
         count = (Math.floor(Math.random() * count)) + 1
-        url = "http://mondaypunday.com/" + count
+        url = baseurl + count
         post(msg, url)
 
 
 getLatest = (msg, cb) ->
-  msg.robot.http("http://mondaypunday.com").get() (err, res, body) ->
+  msg.robot.http(baseurl).get() (err, res, body) ->
       return msg.send "It's eternally Sunday" if err
 
       if res.statusCode == 302
         location = res.headers['location']
         cb location
       else
-        cb "http://mondaypunday.com"
+        cb baseurl
 
 post = (msg, url) ->
   msg.robot.http(url).get() (err, res, body) ->
