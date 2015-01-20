@@ -11,7 +11,6 @@
 # Commands:
 #   hubot monday punday - grab the latest monday punday
 #   hubot monday punday random - gives a random monday punday
-#   hubot monday punday <n> - grab monday punday number n
 #
 # Author:
 #   wil
@@ -27,22 +26,10 @@ module.exports = (robot) ->
 
   robot.respond /monday\s?punday random/i, (msg) ->
     getLatest msg, (url) -> 
-        # decrement 1 to avoid latest
         count = url.match(/\d+/) - 1
         count = (Math.floor(Math.random() * count)) + 1
         url = baseurl + count
         post(msg, url)
-
-  # matches 0..999. if they get past 1000 puns, then update this
-  robot.respond /monday\s?punday ([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/i, (msg) ->
-    getLatest msg, (url) -> 
-        count = url.match(/\d+/)
-        number = msg.match[1]
-        if number <= count
-          url = baseurl + number
-          post(msg, url)
-        else
-          msg.send "It's only Tuesday"
 
 
 getLatest = (msg, cb) ->
